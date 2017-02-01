@@ -14,17 +14,14 @@ public class TypeServiceImpl implements TypeService{
 	@Autowired
 	private TypeDAO typeDAO;
 
-	@Override
 	public List<Type> get(Type obj) {
 		return typeDAO.get(obj);
 	}
 
-	@Override
 	public void save(Type obj) {
 		typeDAO.save(obj);
 	}
 
-	@Override
 	public boolean delete(int id) {
 		return typeDAO.delete(id);
 	}

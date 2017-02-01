@@ -1,0 +1,64 @@
+<div class="container jumbotron">
+	<!-- <div class="container">
+		<div class="text-center">
+			<h1>Bienvenido!</h1>
+			<p class="lead">
+				<img src="" ng-src="{{yeomanImg}}" style="width: 250px"
+					alt="MisPendientes" /><br>
+			</p>
+		</div>
+	</div> -->
+	<div class="container text-center">
+		<form class="form-inline">
+		  <div class="form-group">
+		    <label><h3>Tipo de pendiente</h3></label>
+		  </div>
+		  <div class="form-group">		    
+		    <select class="form-control" ng-change="loadPendings(pending.idType.id)" name="type" ng-init="loadTypes()" id="type" ng-model="pending.idType.id">
+				<option ng-repeat="type in types" value="{{type.id}}">{{type.type}}</option>
+			</select>
+		  </div>
+		  <button type="submit" ng-click="addType()" class="btn btn-default">Agregar</button>
+		</form>
+		<!-- <div class="form-horizontal">
+		  <div class="form-group">
+		  	 <label class="control-label">Seleccione el tipo</label>
+			  <div class="col-md-8 col-sm-12 col-xs-10">
+		        <select class="form-control" name="type" ng-init="loadTypes()" id="type" ng-model="pending.idType.id">
+					<option ng-repeat="type in types" value="{{type.id}}">{{type.type}}</option>
+				</select>
+			  </div>
+		  </div>
+		  </div> -->
+	</div>
+	<br>
+	<div class="container text-center">
+		<fieldset class="form-group row">
+      		<legend>Nuevo pendiente - <i>{{pendings.length}} Pendientes</i></legend>
+			<div class="form-inline">
+			  <div class="form-group">
+			    <label for="title">T&iacute;tulo</label>
+			    <input type="text" class="form-control" id="title" ng-model="pending.title" placeholder="T&iacute;tulo">
+			  </div>
+			  <div class="form-group">
+			    <label for="description">Descripci&oacute;n</label>
+			    <input type="text" class="form-control" id="description" ng-model="pending.description" placeholder="Descripci&oacute;n"/>
+			  </div>
+			  <button type="button" class="btn btn-default btn-info	" ng-click="savePending();" >Guardar</button>
+			</div>
+		</fieldset>
+	</div>
+	<div class="container">
+		<table class="table table-striped" ng-init="loadPendings()" at-table at-paginated at-list="pendings" at-config="config">
+		  <thead></thead>
+		  <tbody>
+		    <tr>
+		      <td at-implicit at-sortable at-attribute="title"  at-title="T&iacute;tulo" width="20%" at-initial-sorting="asc"></td>
+		      <td at-implicit at-sortable at-attribute="description" at-title="Descripci&oacute;n"  width="70%"></td>
+		      <td at-title="Opciones"><a href=""><i class="fa fa-pencil" aria-hidden="true" ng-click="editPending(item)"></i></a>&nbsp;&nbsp;<a href=""><i class="fa fa-trash" aria-hidden="true" ng-click="deletePending(item)" ></i></a></td>
+		    </tr>
+		  </tbody>
+		</table>		
+		<at-pagination at-list="pendings" at-config="config"></at-pagination>
+	</div>
+</div>
