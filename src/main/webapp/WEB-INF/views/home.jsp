@@ -10,8 +10,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="app/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="app/bowercomponents/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="app/bowercomponents/bootstrap/dist/css/bootstrap.min.css" />
     
     <link rel="stylesheet" href="app/font-awesome-4.7.0/css/font-awesome.min.css" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
@@ -20,7 +20,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="app/app/styles/style.min.css">
     <!-- endbuild -->
-     <script src="app/bower_components/jquery/dist/jquery.js"></script>
+     <script src="app/bowercomponents/jquery/dist/jquery.js"></script>
     <!-- jqwidgets -->
 	
     <script type="text/javascript">
