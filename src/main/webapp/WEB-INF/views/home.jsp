@@ -66,16 +66,16 @@
     
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->   
-    <script src="app/bower_components/angular/angular.js"></script>
-    <script src="app/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="app/bower_components/bootstrap-validator/dist/validator.js"></script>
-    <script src="app/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="app/bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="app/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="app/bower_components/angular-route/angular-route.js"></script>
-    <script src="app/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="app/bower_components/angular-touch/angular-touch.js"></script>
-    <script src="app/bower_components/at-table/dist/angular-table.min.js"></script>
+    <script src="app/bowercomponents/angular/angular.js"></script>
+    <script src="app/bowercomponents/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="app/bowercomponents/bootstrap-validator/dist/validator.js"></script>
+    <script src="app/bowercomponents/angular-animate/angular-animate.js"></script>
+    <script src="app/bowercomponents/angular-cookies/angular-cookies.js"></script>
+    <script src="app/bowercomponents/angular-resource/angular-resource.js"></script>
+    <script src="app/bowercomponents/angular-route/angular-route.js"></script>
+    <script src="app/bowercomponents/angular-sanitize/angular-sanitize.js"></script>
+    <script src="app/bowercomponents/angular-touch/angular-touch.js"></script>
+    <script src="app/bowercomponents/at-table/dist/angular-table.min.js"></script>
     
     <!-- endbuild -->
 
