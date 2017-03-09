@@ -5,27 +5,27 @@
 		    <label><h3>Tipo de pendiente</h3></label>
 		  </div>
 		  <div class="form-group">		    
-		    <select class="form-control" ng-change="loadPendings(pending.idType.id)" name="type" ng-init="loadTypes()" id="type" ng-model="pending.idType.id">
-				<option ng-repeat="type in types" value="{{type.id}}">{{type.type}}</option>
+		    <select class="form-control" ng-change="main.loadPendings(main.pending.idType.id)" name="type" ng-init="main.loadTypes()" id="type" ng-model="main.pending.idType.id">
+				<option ng-repeat="type in main.types" value="{{main.type.id}}">{{type.type}}</option>
 			</select>
 		  </div>
-		  <button type="submit" ng-click="addType()" class="btn btn-default">Agregar</button>
+		  <button type="submit" ng-click="main.addType()" class="btn btn-default">Agregar</button>
 		</form>
 	</div>
 	<br>
 	<div class="container text-center">
 		<fieldset class="form-group row">
-      		<legend>Nuevo pendiente - <i>{{pendings.length}} Pendientes</i></legend>
+      		<legend>Nuevo pendiente - <i>{{main.pendings.length}} Pendientes</i></legend>
 			<div class="form-inline">
 			  <div class="form-group">
 			    <label for="title">T&iacute;tulo</label>
-			    <input type="text" class="form-control" id="title" ng-model="pending.title" placeholder="T&iacute;tulo">
+			    <input type="text" class="form-control" id="title" ng-model="main.pending.title" placeholder="T&iacute;tulo">
 			  </div>
 			  <div class="form-group">
 			    <label for="description">Descripci&oacute;n</label>
-			    <input type="text" class="form-control" id="description" ng-model="pending.description" placeholder="Descripci&oacute;n"/>
+			    <input type="text" class="form-control" id="description" ng-model="main.pending.description" placeholder="Descripci&oacute;n"/>
 			  </div>
-			  <button type="button" class="btn btn-default btn-info	" ng-click="savePending();" >Guardar</button>
+			  <button type="button" class="btn btn-default btn-info	" ng-click="main.savePending();" >Guardar</button>
 			</div>
 		</fieldset>
 	</div>
@@ -34,7 +34,7 @@
 	 upload action="http://localhost:8080/alfresco/service/api/upload?alf_ticket=TICKET_58f816fc90d18ed0aea284cbfed16ba8bbb087a2"
 	-->
 	<div class="container">
-	   <form method="POST" name="uploadForm" enctype='multipart/form-data' ng-submit="submitfile()" id="upload_form" role="form" action="">
+	   <form method="post" name="uploadForm" enctype='multipart/form-data' id="uploadForm" role="form">
  	     <input type="hidden" name="destination" id="destination" value="workspace://SpacesStore/37d2a898-faea-4605-baa4-18b5d3734083"/>
  	     <div class="form-group">
  	       <label class="control-label">Folder Parent</label>
@@ -52,20 +52,20 @@
 	       <label class="control-label">File:</label>  
 	       <input class="button" type="file" name="filedata" id="filedata"/>
 	     </div>
-      <input class="btn btn-default btn-success" type="submit" name="submit" value="Upload"/>
+      <input class="btn btn-default btn-success" type="button" ng-click="main.submitfile()" name="submit" value="Upload"/>
     </form>
 	</div>
 	<div class="container">
-		<table class="table table-striped" ng-init="loadPendings()" at-table at-paginated at-list="pendings" at-config="config">
+		<table class="table table-striped" ng-init="main.loadPendings()" at-table at-paginated at-list="main.pendings" at-config="main.config">
 		  <thead></thead>
 		  <tbody>
 		    <tr>
 		      <td at-implicit at-sortable at-attribute="title"  at-title="T&iacute;tulo" width="20%" at-initial-sorting="asc"></td>
 		      <td at-implicit at-sortable at-attribute="description" at-title="Descripci&oacute;n"  width="70%"></td>
-		      <td at-title="Opciones"><a href=""><i class="fa fa-pencil" aria-hidden="true" ng-click="editPending(item)"></i></a>&nbsp;&nbsp;<a href=""><i class="fa fa-trash" aria-hidden="true" ng-click="deletePending(item)" ></i></a></td>
+		      <td at-title="Opciones"><a href=""><i class="fa fa-pencil" aria-hidden="true" ng-click="main.editPending(item)"></i></a>&nbsp;&nbsp;<a href=""><i class="fa fa-trash" aria-hidden="true" ng-click="deletePending(item)" ></i></a></td>
 		    </tr>
 		  </tbody>
 		</table>		
-		<at-pagination at-list="pendings" at-config="config"></at-pagination>
+		<at-pagination at-list="main.pendings" at-config="main.config"></at-pagination>
 	</div>
 </div>
