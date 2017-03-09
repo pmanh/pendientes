@@ -1,1 +1,1 @@
-<% response.sendRedirect("/"); %>
+<% response.sendRedirect("/FamsaPendientes/index"); %>

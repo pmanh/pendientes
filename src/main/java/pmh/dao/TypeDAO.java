@@ -14,12 +14,11 @@ import org.springframework.stereotype.Component;
 
 import pmh.model.Type;
 
-@Component
+//@Component
 public class TypeDAO {
-	@Autowired
+	
 	private SessionFactory sessionFactory;
 	
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Type> get(Type obj){
 		Session session = sessionFactory.openSession();	

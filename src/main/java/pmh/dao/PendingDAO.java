@@ -14,10 +14,9 @@ import org.springframework.stereotype.Component;
 
 import pmh.model.Pending;
 
-@Component
+//@Component
 public class PendingDAO {
 
-	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Transactional

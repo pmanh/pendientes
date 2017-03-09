@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="FamsaPendientes" docBase="FamsaPendientes"
+    reloadable="true" crossContext="true">
+    <Resource name="jdbc/fmpendientes" auth="Container"
+        type="javax.sql.DataSource" maxActive="100" maxIdle="30"
+        maxWait="10000" username="root" password="test" driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://172.17.0.3:3306/fm_pendientes" />
+</Context>

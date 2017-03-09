@@ -1,13 +1,4 @@
 <div class="container jumbotron">
-	<!-- <div class="container">
-		<div class="text-center">
-			<h1>Bienvenido!</h1>
-			<p class="lead">
-				<img src="" ng-src="{{yeomanImg}}" style="width: 250px"
-					alt="MisPendientes" /><br>
-			</p>
-		</div>
-	</div> -->
 	<div class="container text-center">
 		<form class="form-inline">
 		  <div class="form-group">
@@ -20,16 +11,6 @@
 		  </div>
 		  <button type="submit" ng-click="addType()" class="btn btn-default">Agregar</button>
 		</form>
-		<!-- <div class="form-horizontal">
-		  <div class="form-group">
-		  	 <label class="control-label">Seleccione el tipo</label>
-			  <div class="col-md-8 col-sm-12 col-xs-10">
-		        <select class="form-control" name="type" ng-init="loadTypes()" id="type" ng-model="pending.idType.id">
-					<option ng-repeat="type in types" value="{{type.id}}">{{type.type}}</option>
-				</select>
-			  </div>
-		  </div>
-		  </div> -->
 	</div>
 	<br>
 	<div class="container text-center">
@@ -47,6 +28,32 @@
 			  <button type="button" class="btn btn-default btn-info	" ng-click="savePending();" >Guardar</button>
 			</div>
 		</fieldset>
+	</div>
+	<!-- alf_ticket generate with http://localhost:8080/alfresco/service/api/login?u=admin&pw=admin -->
+	<!-- URI DOWNOAD http://172.17.0.1:8080/alfresco/service/api/node/workspace/SpacesStore/6c115324-ef9d-4dec-9520-422cba55b391/content/main.txt?a=true&alf_ticket=TICKET_0d4806496a6eaf1b53c8e5e53aa1a0bc657eca7e
+	 upload action="http://localhost:8080/alfresco/service/api/upload?alf_ticket=TICKET_58f816fc90d18ed0aea284cbfed16ba8bbb087a2"
+	-->
+	<div class="container">
+	   <form method="POST" name="uploadForm" enctype='multipart/form-data' ng-submit="submitfile()" id="upload_form" role="form" action="">
+ 	     <input type="hidden" name="destination" id="destination" value="workspace://SpacesStore/37d2a898-faea-4605-baa4-18b5d3734083"/>
+ 	     <div class="form-group">
+ 	       <label class="control-label">Folder Parent</label>
+	       <input class="form-control" type="text" name="uploaddirectory" id="uploaddirectory" value="activities"/>
+	     </div>
+	     <div class="form-group">
+	       <label class="control-label">Name:</label>
+	       <input class="form-control" type="text" name="filename" id="filename"/>
+	     </div>
+	     <div class="form-group">
+		     <label class="control-label">Description:</label>  
+	       <textarea class="form-control" name="description" id="description"></textarea>
+	     </div>
+       <div class="form-group">
+	       <label class="control-label">File:</label>  
+	       <input class="button" type="file" name="filedata" id="filedata"/>
+	     </div>
+      <input class="btn btn-default btn-success" type="submit" name="submit" value="Upload"/>
+    </form>
 	</div>
 	<div class="container">
 		<table class="table table-striped" ng-init="loadPendings()" at-table at-paginated at-list="pendings" at-config="config">

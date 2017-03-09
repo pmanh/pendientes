@@ -11,3 +11,4 @@ public interface TypeService {
 	
 	public boolean delete (int id);
 }
+    

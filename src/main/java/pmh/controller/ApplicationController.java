@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ApplicationController {
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String home(HttpServletRequest request){
 		return "home";
 	}

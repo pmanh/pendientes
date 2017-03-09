@@ -1,21 +1,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:util="http://www.springframework.org/schema/util" 
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
-		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
 
-	<context:component-scan base-package="pmh.model" />
-	<context:component-scan base-package="pmh.controller" />
-	<context:component-scan base-package="pmh.service" />
-	<context:component-scan base-package="pmh.service.impl" />
-	<context:component-scan base-package="pmh.dao" />
+	<context:component-scan base-package="pmh" />
 	
 	<mvc:annotation-driven>
 	    <mvc:message-converters>       
@@ -34,31 +35,38 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3156615" />	
-		<property name="username" value="sql3156615" />
-		<property name="password" value="Ptakhb2Sud" />
-		
-		<!-- <property name="url" value="jdbc:mysql://localhost:3306/fm_pendings" />	
-		<property name="username" value="root" />
-		<property name="password" value="" /> -->
-	</bean>
+    
+    <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/fmpendientes"/>
 	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />			
-		<property name="packagesToScan" value="pmh.model"></property>
-		<property name="hibernateProperties">
-			<props>			
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop> -->
-				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
-	</bean>
-	
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="persistenceUnit"></property>
+        <property name="packagesToScan">
+            <list>
+                <value>pmh.model</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+                <property name="showSql" value="true" />
+            </bean>
+        </property>
+        <property name="jpaProperties">
+            <props>
+               <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    <jpa:repositories base-package="pmh.repository"/>
+    
 	<bean id="jacksonObjectMapper"
 		class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
 		<!-- <property name="featuresToDisable">

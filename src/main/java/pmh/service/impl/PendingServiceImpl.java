@@ -7,23 +7,29 @@ import org.springframework.stereotype.Service;
 
 import pmh.dao.PendingDAO;
 import pmh.model.Pending;
+import pmh.repository.PendingRepository;
 import pmh.service.PendingService;
 
 @Service("pendingService")
 public class PendingServiceImpl implements PendingService{
 	@Autowired
-	private PendingDAO pendingDAO;
+	private PendingRepository pendingRepository;
 	
 	public List<Pending> get(Pending obj){
-		return pendingDAO.get(obj);
+		return pendingRepository.findAll();
 	}
 	
 	public void save(Pending obj){
-		pendingDAO.save(obj);
+	    pendingRepository.save(obj);
 	}
 	
 	public boolean delete(int id){
-		return pendingDAO.delete(id);
+	    Pending pending = pendingRepository.findOne(id);
+	    if(pending != null){
+	        pendingRepository.delete(pending);
+	        return true;
+	    }
+		return false;
 	}
 	
 }
