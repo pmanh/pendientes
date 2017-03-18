@@ -28,7 +28,7 @@
 	    vm.loadTypes = loadTypes;
 	    vm.loadPendings = loadPendings;
 	    vm.addType = addType;
-	    vm.savePending = savePending;	    
+	    vm.savePending = sendForm;	    
 	    vm.deletePending = deletePending;
 	    
 	    vm.editPending = function(item){
@@ -36,29 +36,9 @@
 	    		item.idType.id +='';
 	    	vm.pending = item;
 	    }
-	    console.debug(angular.identity)
-	    vm.submitfile =  function submitfile(){
-	    	UploadFile.save($("#uploadForm")).$promise.then(function(e){
-	    		console.debug(e);
-	    	})
-//	    	console.log('do')
-//	    	console.log($("#uploadForm"))
-//		    var formdata = new FormData($("#uploadForm"));
-//		    $.ajax({
-//		        type: "POST",
-//		        url: "http://localhost:8080/alfresco/service/api/upload?alf_ticket=TICKET_4f1b4dd7bdc76f254b2f534c1e00272d5193c493",
-//		        data: formdata,
-//		        processData: false,
-//		        contentType: false,
-//		        dataType: "json",
-//		        success: function(data, textStatus, jqXHR) {
-//		        	console.log(data)
-//		        },
-//		        error: function(data, textStatus, jqXHR) {
-//		        	console.log(data)
-//		           //process error msg
-//		        },
-//		    });
+	    
+	    vm.submitfile =  function submitfile(event){
+	    	
 	    }
 	    
 	    /**
@@ -81,15 +61,40 @@
 		/**
 		 * @returns
 		 */
+		function sendForm(){
+			console.log("submiting file")
+		    var formdata = new FormData(document.querySelector("form"));
+			formdata.append("filename", $('#filedata')[0].files[0].name);
+		    $.ajax({
+		        type: "POST",
+		        url: "http://localhost:8080/alfresco/service/api/upload?alf_ticket=TICKET_7d8cff3ed81a2ed8dfc7dda425cc7e1c3ecbb10f",
+		        data: formdata,
+		        processData: false,
+		        contentType: false,
+		        dataType: "json",
+		        success: function(data, textStatus, jqXHR) {
+		        	console.log(data)
+		        	//Process data
+//		        	savePending();
+		        },
+		        error: function(data, textStatus, jqXHR) {
+		        	console.log(data)
+		           //process error msg
+		        },
+		    });
+		    
+	    	
+	    }
+		
 		function savePending(){
-	    	if(vm.pending.title && vm.pending.title.trim().length >0){
+			if(vm.pending.title && vm.pending.title.trim().length >0){
 		    	if(vm.pending.id){
 		    		Pending.update(vm.pending).$promise.then((resp) => vm.pending = {},vm.loadPendings());
 		    	}else{
 		    		Pending.save(vm.pending).$promise.then((resp)=> vm.pending = {}, vm.loadPendings());    		
 		    	}
 	    	}
-	    }
+		}
 		/**
 		 * @returns
 		 */
